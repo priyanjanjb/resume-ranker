@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: cookie;
+  src: url('../assets/fonts/Cookie/Cookie-Regular.ttf');
+}
+
+/* == Layout Containers == */
+.FormBackPanel {
+  @apply w-full h-screen bg-cover bg-center flex justify-center items-center p-[60px];
+  background-image: url('../../assets//images/background.jpg');
+}
+
+.LRPanel {
+  @apply w-2/3 flex flex-col md:flex-row justify-center items-center h-auto md:h-[500px] rounded-4xl;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* == Panel Width/Height Base == */
+.leftPanelSGin,
+.rightPanel {
+  @apply w-1/2 h-1/2 md:h-full md:w-[400px];
+}
+
+/* == Shared Left Panel Styling == */
+.leftPanelSGin {
+  @apply p-4 h-[500px] bg-contain bg-no-repeat bg-center bg-[#476efc] rounded-none md:rounded-l-4xl md:w-[600px];
+}
+
+/* == Background Images for Left Panels == */
+.leftPanelSGin {
+  background-image: url('../../assets/images/login.webp');
+}
+
+
+/* == Right Panel == */
+.rightPanel {
+  @apply flex flex-col bg-white rounded-none md:rounded-r-4xl;
+}
+
+/* == Typography & Tagline == */
+.tagline {
+  @apply text-white flex items-end justify-center h-full p-5 mt-4;
+}
+
+.actionTopic {
+  @apply flex justify-center mt-8;
+}
+
+/* == Greeting Buttons (SignIn & SignUp) == */
+.greetingSignIn {
+  @apply inline-block bg-[#476efc] rounded-r-full mt-4 mr-8 text-white 
+         text-base sm:text-lg md:text-xl lg:text-xl 
+         px-3 sm:px-4 py-2;
+}
+
+.greetingSignIn {
+  @apply w-1/2;
+}
+
+/* == Form Styling == */
+.formTextSection {
+  @apply flex-row;
+}
+
+.formData {
+  @apply flex flex-col items-center mt-5;
+}
+
+.inputBox {
+  @apply border border-gray-300 rounded-full flex flex-col justify-center 
+         p-1 m-2 mt-2 mr-8 focus:border-blue-500 focus:border-2 focus:outline-none;
+}
+
+/* == Button Section == */
+.buttonScection {
+  @apply flex flex-col md:flex-row justify-center mt-1;
+}
+
+.buttons {
+  @apply flex justify-center bg-[#476efc] text-white rounded-full 
+         px-6 py-2 m-2 mx-auto hover:bg-blue-800 transition duration-300;
+}
+
+/* == Links & Paragraphs == */
+.linkslg,
+.para {
+  @apply flex justify-center;
+}
+
+
+.linkslg {
+  @apply underline;
+}
+
+.linkslg {
+  @apply flex items-end mt-2;
+}
