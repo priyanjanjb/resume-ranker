@@ -5,7 +5,7 @@ function SignInPage(props: Props) {
     const {} = props
 
     return (
-      <div className="FormBackPanel">
+      <div className="formBackPanel">
         <div className="LRPanel">
           <div className="leftPanelSGin">
             <p className="tagline">
