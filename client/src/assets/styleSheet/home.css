@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*background*/
+.hmBackPanel {
+    @apply w-full h-screen flex justify-center items-center bg-cover bg-center p-15 ;
+    background-image: url('../../assets/images/background.jpg');
+}
+
+/* Layout Panels */
+.hmLRPanel {
+    @apply w-2/3 flex flex-col md:flex-row justify-center items-center h-auto md:h-[500px] rounded-4xl;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/*set height and width to the left and right panel*/
+.leftPanel,
+.rightPanel{
+    @apply w-1/2 h-1/2 md:h-full md:w-[400px];
+    
+
+}
+
+
+/*left panel section*/
+.leftPanel{
+    @apply p-4 h-[500px] bg-contain bg-no-repeat bg-center bg-[#476efc] rounded-none md:rounded-l-4xl md:w-[600px];
+    background-image: url('../../assets/images/cvcheck.png');
+    
+}
+
+
+/*Tagline */
+.tagline {
+    @apply text-white flex items-end justify-center h-full p-5 mt-4;
+  }
+
+
+/* Right Panel Section */
+.rightPanel {
+    @apply flex flex-col bg-[#ffffff] rounded-none md:rounded-r-4xl ;
+}
+
+/* Greeting Buttons */
+.greeting{
+    @apply w-1/2 inline-block bg-[#476efc] rounded-r-full mt-4 mr-8 text-white 
+           text-base sm:text-lg md:text-xl lg:text-xl 
+           pl-3 pr-3 sm:pl-4 sm:pr-4 pt-2 pb-2;
+}
+
+/* Form Layout */
+.formTextSection {
+    @apply flex-row;
+}
+
+.actionTopic {
+    @apply flex justify-center mt-8;
+}
+
+.formData{
+    @apply flex justify-center flex-col ml-8 mt-5;
+}
+/*form input section*/
+.inputBox {
+    @apply border border-gray-300 rounded-full flex flex-col justify-center p-1 m-2 mt-2 mr-8 focus:border-blue-500 focus:border-2 focus:outline-none;
+}
+
+.buttonScection {
+    @apply flex flex-col md:flex-row justify-center mt-1;
+}
+/* home page Button style*/
+.buttons {
+    @apply flex justify-center bg-[#476efc] text-white rounded-full px-6 py-2 m-2 mx-auto 
+           hover:bg-blue-800 transition duration-300;
+}
+
+

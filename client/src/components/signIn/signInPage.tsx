@@ -23,7 +23,7 @@ function SignInPage(props: Props) {
   const handleSubmit =  async(e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault(); // Prevent page reload
     console.log("submit ok");
-   navigate('/signup')
+   navigate('/homePage')
 
     
   }
