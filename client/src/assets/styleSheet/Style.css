@@ -22,17 +22,21 @@
 }
 
 /* == Panel Width/Height Base == */
+.leftPanelSGup,
 .leftPanelSGin,
 .rightPanel {
   @apply w-1/2 h-1/2 md:h-full md:w-[400px];
 }
 
 /* == Shared Left Panel Styling == */
+
+.leftPanelSGup,
 .leftPanelSGin {
   @apply p-4 h-[500px] bg-contain bg-no-repeat bg-center bg-[#476efc] rounded-none md:rounded-l-4xl md:w-[600px];
 }
 
 /* == Background Images for Left Panels == */
+.leftPanelSGup,
 .leftPanelSGin {
   background-image: url('../../assets/images/login.webp');
 }
@@ -53,6 +57,7 @@
 }
 
 /* == Greeting Buttons (SignIn & SignUp) == */
+.greetingSignUp ,
 .greetingSignIn {
   @apply inline-block bg-[#476efc] rounded-r-full mt-4 mr-8 text-white 
          text-base sm:text-lg md:text-xl lg:text-xl 
@@ -88,12 +93,14 @@
 }
 
 /* == Links & Paragraphs == */
+.linkssg,
 .linkslg,
 .para {
   @apply flex justify-center;
 }
 
 
+.linkssg,
 .linkslg {
   @apply underline;
 }
