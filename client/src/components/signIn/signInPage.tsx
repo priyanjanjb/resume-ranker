@@ -1,8 +1,33 @@
 import '../../assets/styleSheet/Style.css'
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 interface Props {}
 
 function SignInPage(props: Props) {
     const {} = props
+    const navigate = useNavigate();
+    const [loginFormData, setLoginFormData] = useState({
+      email: '',
+      password: ''
+    });
+
+    const handleInputChange =(e: React.ChangeEvent<HTMLInputElement>)=>{
+    const {name , value} = e.target;
+    setLoginFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+      }));
+    }
+
+  const handleSubmit =  async(e: React.FormEvent<HTMLFormElement>) =>{
+    e.preventDefault(); // Prevent page reload
+    console.log("submit ok");
+   navigate('/signup')
+
+    
+  }
+
 
     return (
       <div className="formBackPanel">
@@ -17,14 +42,15 @@ function SignInPage(props: Props) {
             <h1 className="greetingSignIn">Welcome back</h1>
             <div className="formTextSection">
               <p className="actionTopic">Login to your account</p>
-              <form className="formData" >
+              <form className="formData" onSubmit={handleSubmit}>
               <input
                 className="inputBox"
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Email"
-                
+                value={loginFormData.email}
+                onChange={handleInputChange}
                 required
               />
 
@@ -34,6 +60,8 @@ function SignInPage(props: Props) {
                 id="password"
                 name="password"
                 placeholder="Password"
+                value={loginFormData.password}
+                onChange={handleInputChange}
                 required
               />
 
