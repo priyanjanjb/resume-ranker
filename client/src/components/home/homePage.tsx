@@ -1,10 +1,16 @@
 import '../../assets/styleSheet/home.css'
+import { useNavigate } from 'react-router-dom'
 interface Props {}
 
 function HomePage(props: Props) {
     const {} = props
+    const navigate = useNavigate();
 
-  
+    const handleSubmit = () => {
+        console.log("Form submitted");
+        navigate('/dashboard'); // Navigate to the next page
+    };
+
     return (
         <div className="hmBackPanel">
       <div className="hmLRPanel">
@@ -22,7 +28,7 @@ function HomePage(props: Props) {
 
           <div className="formTextSection">
             <p className="actionTopic">Fill the Form</p>
-            <form className="formData" >
+            <form className="formData" onSubmit={handleSubmit}>
               <input
                 className="inputBox"
                 type="text"
