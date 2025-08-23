@@ -2,6 +2,7 @@ import '../../assets/styleSheet/Style.css'
 import { useState } from "react";
 import toast from 'react-hot-toast';
 import {useNavigate } from "react-router-dom";
+import axios from 'axios';
 function SignUpPage() {
   const navigate = useNavigate();
   const [signinFormData, setSigninFormData] = useState({
@@ -23,14 +24,35 @@ function SignUpPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { password, cPassword } = signinFormData;
+    const { fName, lName, email, password, cPassword } = signinFormData;
 
     if (password !== cPassword) {
       toast.error("Passwords do not match!");
       return;
     }
-    console.log("handle submit");
-    navigate('/');
+    try {
+      const response = await axios.post('/register', {
+      fName,
+      lName,
+      email,
+      password,
+      });
+
+      console.log("Sign in Response:", response);
+
+
+      toast.success("Signup Successful, Welcome!");
+      navigate('/signin');
+
+    }catch (error: any) {
+      const errorMessage =
+      error?.response?.data?.message || // custom message from backend
+      error?.response?.data?.error ||   // fallback option
+      "Something went wrong. Please try again."; // default
+
+      console.error("Login Error:", error);
+      toast.error(errorMessage);
+    }
 
     
   }
