@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from 'react-hot-toast';
 import {useNavigate } from "react-router-dom";
 import axios from 'axios';
+
 function SignUpPage() {
   const navigate = useNavigate();
   const [signinFormData, setSigninFormData] = useState({
