@@ -43,7 +43,7 @@ function SignUpPage() {
 
 
       toast.success("Signup Successful, Welcome!");
-      navigate('/signin');
+      navigate('/');
 
     }catch (error: any) {
       const errorMessage =

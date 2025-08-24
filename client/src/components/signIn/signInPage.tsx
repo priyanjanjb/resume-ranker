@@ -1,7 +1,8 @@
 import '../../assets/styleSheet/Style.css'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+import {toast} from 'react-hot-toast';
 interface Props {}
 
 function SignInPage(props: Props) {
@@ -22,8 +23,29 @@ function SignInPage(props: Props) {
 
   const handleSubmit =  async(e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault(); // Prevent page reload
-    console.log("submit ok");
-   navigate('/homePage')
+    const {email, password} = loginFormData; 
+    try{
+
+      const response = await axios.post('/login' , {
+        email,
+        password
+      },{
+         withCredentials: true
+      })
+
+      console.log("Login Response:", response);
+      toast.success("Login Successful");
+      navigate('/homePage');
+
+    }catch(error:any){
+      const errorMessage =
+      error?.response?.data?.message || // custom message from backend
+      error?.response?.data?.error ||   // fallback option
+      "Something went wrong in Login. Please try again."; // default
+
+      console.error("Login Error:", error);
+      toast.error(errorMessage);
+    }
 
     
   }

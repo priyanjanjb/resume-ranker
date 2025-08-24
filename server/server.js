@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const port  = 8000;
@@ -13,6 +14,7 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err)=>{console.log("DB connected unsuccessfully....!!! "+ err)})
 
 // Middleware
+app.use(cookieParser())
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 

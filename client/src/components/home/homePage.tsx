@@ -1,5 +1,5 @@
 import '../../assets/styleSheet/home.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 interface Props {}
 
 function HomePage(props: Props) {
@@ -10,6 +10,7 @@ function HomePage(props: Props) {
         console.log("Form submitted");
         navigate('/dashboard'); // Navigate to the next page
     };
+
 
     return (
         <div className="hmBackPanel">

@@ -1,4 +1,4 @@
-import {registerUser} from '../controller/authController.js';
+import {registerUser , loginUser , getProfile , logoutUser} from '../controller/authController.js';
 import express from "express";
 import cors from 'cors';
 
@@ -12,5 +12,7 @@ router.use(
 )
 
 router.post('/register', registerUser);
+router.get('/profile' , getProfile);
+router.post('/logout' , logoutUser);   
 
 export default router;
