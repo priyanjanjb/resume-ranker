@@ -1,15 +1,35 @@
 import '../../assets/styleSheet/home.css'
 import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-hot-toast';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/userContext';
 interface Props {}
 
 function HomePage(props: Props) {
     const {} = props
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        console.log("Form submitted");
-        navigate('/dashboard'); // Navigate to the next page
-    };
+    const userContext = useContext(UserContext);
+    //safety check
+    if (!userContext) {
+      throw new Error("HomePage must be used within a UserContextProvider");
+    }
+    const { logout } = userContext;
+
+      const handleSubmit = () => {
+          console.log("Form submitted");
+          navigate('/dashboard'); // Navigate to the next page
+      };
+
+    const handleLogout = async () => {
+    try {
+      await logout();
+      toast.success("Logout Successful");
+      navigate('/');
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
 
 
     return (
@@ -64,7 +84,7 @@ function HomePage(props: Props) {
                 <button className="buttons" type="reset"
 
                 >Reset</button>
-                <button type="button" className="buttons" >
+                <button type="button" className="buttons" onClick={handleLogout}>
                   Logout
                 </button>
               </div>

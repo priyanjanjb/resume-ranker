@@ -1,6 +1,5 @@
 import User from '../model/user.js';
 import jwt from 'jsonwebtoken';
-
 import { hashPassword ,comparePassword} from '../encriptions/auth.js';
 
 //Register EndPoint
@@ -29,13 +28,16 @@ const registerUser = async (req, res) => {
       });
     }
 
+     // Hash password
+    const hashedPassword = await hashPassword(password);
+
 
     // Create user
     const user = await User.create({
       fName,
       lName,
       email,
-      password
+      password: hashedPassword,
     });
 
     // Return safe response
@@ -57,36 +59,46 @@ const registerUser = async (req, res) => {
 
 
 //login EndPoint
-const loginUser = async(req,res)=>{
-    try{
-        const {email,password} = req.body
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-        //user exist or not
-        const user = await User.findOne({email})
-        if (!user) {
-            return res.status(404).json({ error: "No user found" });
-        }
-
-        //check the password is mach 
-        const match = await comparePassword(password, user.password);
-        if(match){
-          jwt.sign({email: user.email, id: user._id , name: user.lName},
-                    process.env.JWT_SECRET,
-                    {},
-                    (err,token)=>{
-                      if(err) throw err;
-                      res.cookie('token', token).json(user);
-                    })
-        }
-        if (!match) {
-            return res.status(401).json({ error: "Incorrect password Try again" });
-        }
-
-
-    }catch(error){
-        console.log(error)
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: "No user found" });
     }
-}
+
+    // Compare password
+    const match = await comparePassword(password, user.password);
+
+    if (!match) {
+      return res.status(401).json({ error: "Incorrect password, try again" });
+    }
+
+    // Create JWT token
+    jwt.sign(
+      { email: user.email, id: user._id, name: user.lName },
+      process.env.JWT_SECRET || "default_secret", // fallback to avoid crashes
+      {},
+      (err, token) => {
+        if (err) {
+          console.error("JWT sign error:", err);
+          return res.status(500).json({ error: "Login failed, try again later" });
+        }
+        res.cookie("token", token, { httpOnly: true }).json({
+          id: user._id,
+          fName: user.fName,
+          lName: user.lName,
+          email: user.email,
+        });
+      }
+    );
+  } catch (error) {
+    console.error("Error in loginUser:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 
 //profile endpoint
