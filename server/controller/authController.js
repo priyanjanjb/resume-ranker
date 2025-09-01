@@ -1,6 +1,9 @@
 import User from '../model/user.js';
 import jwt from 'jsonwebtoken';
 import { hashPassword ,comparePassword} from '../encriptions/auth.js';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse');
 
 //Register EndPoint
 const registerUser = async (req, res) => {
@@ -128,4 +131,30 @@ const logoutUser = (req, res) => {
 };
 
 
-export { registerUser , loginUser , getProfile , logoutUser };
+//pdfread
+const dataRead = async (req,res) =>{
+  try {
+        if (!req.file) {
+            return res.status(400).send('No PDF file uploaded.');
+        }
+
+        const dataBuffer = req.file.buffer; // Get the PDF data as a buffer
+
+        const data = await pdfParse(dataBuffer);
+        const pdfText = data.text; // Extracted text content
+
+        //console.log('PDF Text:', pdfText);
+        res.status(200).json({
+          success: true,
+          content: pdfText,
+        });
+        //{success: true, message : "call successfully"}
+
+    } catch (error) {
+        console.error('Error processing PDF:', error);
+        res.status(500).send('Failed to process PDF.');
+    }
+
+}
+
+export { registerUser , loginUser , getProfile , logoutUser , dataRead };
