@@ -146,7 +146,7 @@ function SignUpPage() {
 
             <p className="para">
               Already have an account?
-              <a className="linkssg" href="/signin"> Login</a>
+              <a className="linkssg" href="/"> Login</a>
             </p>
           </div>
         </div>
