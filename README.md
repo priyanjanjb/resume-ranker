@@ -82,13 +82,13 @@ npm run dev        # start Vite dev server
 The app should now be running on:
 
 * Frontend: `http://localhost:5173`
-* Backend: `http://localhost:5000`
+* Backend: `http://localhost:8000`
 
 ---
 
 ## 📸 Screenshots
 
-*Add your screenshots here (stored in `/assets/screenshots/`).*
+*Add your screenshots here (stored in `/assets/`).*
 
 **Login Page**
 
